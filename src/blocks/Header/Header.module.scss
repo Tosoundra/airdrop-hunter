@@ -1,0 +1,14 @@
+@use '../../styles/colorVariables.scss';
+
+.header{
+
+  .header__warn{
+    max-width: 1700px;
+    background-color: colorVariables.$blueBackGround;
+  }
+
+.header__button {
+    background-color: colorVariables.$blueBackGround;
+  }
+}
+
