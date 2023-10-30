@@ -1,0 +1,24 @@
+@use '../../styles/colorVariables.scss';
+
+.button {
+  color: colorVariables.$buttonTextColor;
+  background-color: transparent;
+  border-color: transparent;
+  width: 100px;
+  height: calc(100% - 3px);
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 -3px 0 colorVariables.$buttonColor inset;
+  }
+
+  &:active {
+    background-color: colorVariables.$buttonColor;
+  }
+
+  &_active {
+    cursor: initial !important;
+    background-color: colorVariables.$buttonColor;
+    border-radius: 8px;
+  }
+}

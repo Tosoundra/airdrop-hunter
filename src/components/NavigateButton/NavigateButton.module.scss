@@ -1,0 +1,13 @@
+@use '../../styles/colorVariables.scss';
+
+.button {
+  background: url('../../assets/images/arrow.svg') no-repeat center / auto;
+  background-color: colorVariables.$buttonColor;
+  padding: 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background-color: colorVariables.$additionalBackgroundColor;
+  }
+}

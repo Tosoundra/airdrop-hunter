@@ -1,39 +1,68 @@
 import styles from './Header.module.scss';
-import logo from '../../assets/images/Frame.png';
-import { useState } from 'react';
+import stylesButton from '../../components/Button/Button.module.scss';
+import logo from '../../assets/images/logo_AirDrop.svg';
+import { memo, useState } from 'react';
+import { Button } from '../../components/Button/Button';
+import { UserAccount } from '../../components/UserAccount/UserAccount';
 
-export const Header = () => {
-  const [drops, setDrops] = useState(false);
+export const Header = memo(() => {
+  const [selectedButton, setSelectedButton] = useState('');
+  const [isShownWarn, setIsShownWarn] = useState(true);
 
-  function handleClick() {
-    setDrops(!drops);
+  function closeWarnClickHandle() {
+    setIsShownWarn(false);
+  }
+
+  function isSelectedButton(buttonName) {
+    return selectedButton === buttonName ? stylesButton.button_active : '';
   }
 
   return (
     <header className={styles.header}>
-      <div className={styles.header__warn}>
-        <div style={{ margin: 'auto' }}>This project is beta. DYOR</div>
-        <button>close</button>
-      </div>
-      <div className={styles.header__container}>
-        <img src={logo} alt="" />
-        <div className={styles.header__walletContainer}>
-          <button className={styles.header__button}>Deposit</button>
-          <a href="#">Connect Wallet</a>
-          <div className={styles.header__emptySpace}></div>
+      {isShownWarn && (
+        <div className={styles.header__warn}>
+          <div style={{ margin: 'auto' }}>This project is beta. DYOR</div>
+          <button
+            onClick={closeWarnClickHandle}
+            className={styles['header__close-button']}></button>
         </div>
+      )}
+      <div className={styles.header__container}>
+        <img className={styles.header__logo} src={logo} alt="airdrop logo" />
+        <UserAccount />
       </div>
-      <nav className={styles.header__navContainer}>
-        <button
-          onClick={handleClick}
-          className={`${styles.header__navElement} ${drops && styles.button_active}`}
-        >
-          Airdrops
-        </button>
-        <button className={styles.header__navElement}>Stats</button>
-        <button className={styles.header__navElement}>News</button>
-        <button className={styles.header__navElement}>Referals</button>
+      <nav className={styles['header__navigation-container']}>
+        <Button
+          isSelectedButton={isSelectedButton}
+          setSelectedButton={setSelectedButton}
+          name="Airdrops"
+        />
+        <Button
+          isSelectedButton={isSelectedButton}
+          setSelectedButton={setSelectedButton}
+          name="Stats"
+        />
+        <Button
+          isSelectedButton={isSelectedButton}
+          setSelectedButton={setSelectedButton}
+          name="News"
+        />
+        <Button
+          isSelectedButton={isSelectedButton}
+          setSelectedButton={setSelectedButton}
+          name="Referrals"
+        />
+        <Button
+          isSelectedButton={isSelectedButton}
+          setSelectedButton={setSelectedButton}
+          name="Nodes"
+        />
+        <Button
+          isSelectedButton={isSelectedButton}
+          setSelectedButton={setSelectedButton}
+          name="Text"
+        />
       </nav>
     </header>
   );
-};
+});

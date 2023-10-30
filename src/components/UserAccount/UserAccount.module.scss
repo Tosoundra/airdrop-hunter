@@ -1,0 +1,98 @@
+@use '../../styles/colorVariables.scss';
+@use '../../styles/elementVariables.scss';
+@use '../../styles/fontVariables.scss';
+
+.account {
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+  border-radius: elementVariables.$elementBorderRadius;
+
+  &__button {
+    background-color: colorVariables.$additionalBackgroundColor;
+    color: colorVariables.$mainBackgroundColor;
+    padding: 11px;
+    border-radius: inherit;
+    border: none;
+    font-size: fontVariables.$standardFontSize;
+    font-weight: fontVariables.$standardFontWeight;
+    cursor: pointer;
+  }
+
+  &__container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: inherit;
+  }
+
+  &__matic {
+    display: flex;
+    place-items: center;
+    background-color: colorVariables.$mainBackgroundColor;
+    border-radius: elementVariables.$elementBorderRadius;
+    padding: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  &__wallet-summary {
+    display: flex;
+    place-items: center;
+    column-gap: 10px;
+    background-color: colorVariables.$mainBackgroundColor;
+    padding: 3px;
+    border-radius: inherit;
+  }
+
+  &__balance {
+    font-size: fontVariables.$standardFontSize;
+    font-weight: fontVariables.$standardFontWeight;
+  }
+
+  &__id {
+    border-radius: elementVariables.$elementBorderRadius;
+    background-color: colorVariables.$buttonColor;
+    color: colorVariables.$buttonTextColor;
+    padding: 8px 20px;
+
+    font-size: fontVariables.$standardFontSize;
+    font-weight: fontVariables.$standardFontWeight;
+    cursor: default;
+  }
+
+  &__gas-balance {
+    font-size: fontVariables.$standardFontSize;
+    font-weight: fontVariables.$standardFontWeight;
+  }
+
+  &__options {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: colorVariables.$mainBackgroundColor;
+    border-radius: inherit;
+    border: none;
+    cursor: pointer;
+
+    &-button {
+      width: 18px;
+      height: 4px;
+      background: url('../../assets/images/options_button.svg');
+    }
+  }
+}
+
+.wallet-container {
+  padding: 4px;
+  background-color: #ffe0b9;
+  border-radius: elementVariables.$elementBorderRadius;
+  display: flex;
+  place-content: center;
+  cursor: pointer;
+  &__logo {
+    width: 26px;
+  }
+}
