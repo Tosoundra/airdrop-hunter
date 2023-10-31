@@ -9,6 +9,7 @@
   &__element {
     height: 400px;
     display: flex;
+    transition: height 0.3s ease-in-out;
   }
 
   &__information {
@@ -58,8 +59,39 @@
   }
 }
 
-.news {
-  &__element-hidden {
-    height: 92px;
+.news_collapse {
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border 0.3s ease-in-out;
+  &:hover {
+    border: 1px solid colorVariables.$additionalBackgroundColor;
   }
+}
+
+.news__element_collapse {
+  height: 92px;
+  display: block;
+}
+
+.news__information_collapse {
+  max-width: 100%;
+  padding: 26px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.news__description_collapse {
+  width: 600px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: auto;
+  color: colorVariables.$buttonTextColor;
+}
+
+.news_control_collapse {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

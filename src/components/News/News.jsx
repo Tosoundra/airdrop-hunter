@@ -7,101 +7,97 @@ import { newsData } from '../../assets/newsData/newsData';
 export const News = () => {
   const [news, setNews] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHide, setIsHide] = useState(false);
-  const [buttonHideText, setButtonHideText] = useState('show');
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const createDate = () => {
     return `${new Date().getHours()}: ${new Date().getMinutes()}`;
   };
 
   function toggleHideClickHandle() {
-    setIsHide((prev) => !prev);
+    setIsCollapsed((prev) => !prev);
+    console.log(toggleHideClickHandle.name);
   }
 
   function nextPageButtonClickHandle() {
     if (currentIndex < news.length - 1) {
       setCurrentIndex((prev) => prev + 1);
-      setIsNextButtonDisabled(false);
-    } else {
-      setIsNextButtonDisabled(true);
     }
   }
 
   function previousPageButtonClickHandle() {
     if (currentIndex >= 1) {
       setCurrentIndex((prev) => prev - 1);
-      setIsPreviousButtonDisabled(false);
-    } else {
-      setIsPreviousButtonDisabled(true);
     }
   }
 
   useEffect(() => {
     setNews(newsData.data);
-  }, []);
-  if (isHide) {
-    return (
-      <section className={styles.news}>
-        <div className={styles.news__element}>
-          <div className={styles.news__information}>
-            <span className={styles.news__date}>{`Today • ${createDate()}`}</span>
-            <h1 className={styles.news__title}>{news[currentIndex]?.title}</h1>
-            <p className={styles.news__description}>
+    // isCollapsed ? setButtonHideText('Show') : setButtonHideText('Hide');
+  }, [isCollapsed]);
+  return (
+    <section className={`${styles.news} ${isCollapsed ? styles.news_collapse : ''}`}>
+      <div
+        className={`${styles.news__element} ${isCollapsed ? styles.news__element_collapse : ''}`}>
+        {isCollapsed ? (
+          <div
+            onClick={() => {
+              setIsCollapsed(false);
+            }}
+            className={styles.news__information_collapse}>
+            <div className={styles.news_control_collapse}>
+              <div className={styles['news__hide-container']}>
+                <NavigateButton degree={45} onClick={toggleHideClickHandle} />
+                <a onClick={toggleHideClickHandle}>Show</a>
+              </div>
+              <span style={{ color: '#F3F3F3' }}>&#10072;</span>
+              <h1 className={styles.news__title_collapse}>AirdropHunter&#8217;s NEWS</h1>
+            </div>
+            <p className={styles.news__description_collapse}>
               {news[currentIndex] && news[currentIndex].description}
             </p>
-            <div className={styles.news__control}>
-              <div className={styles['news__hide-container']}>
-                <NavigateButton degree={-45} onClick={toggleHideClickHandle} />
-                <a>{buttonHideText}</a>
-                <span style={{ color: '#F3F3F3' }}>|</span>
-                <a>Read more</a>
-              </div>
-              <div className={styles['news__turn-page-button-container']}>
-                <span>{`${currentIndex + 1}/${news.length}`}</span>
-                {currentIndex > 0 ? (
-                  <>
-                    <NavigateButton onClick={previousPageButtonClickHandle} degree={-180} />
-                  </>
-                ) : (
-                  ''
-                )}
-                {currentIndex < news.length - 1 ? (
-                  <NavigateButton onClick={nextPageButtonClickHandle} />
-                ) : (
-                  ''
-                )}
-              </div>
-            </div>
           </div>
-          <div className={styles['news__image-container']}>
-            <img
-              className={styles.news__image}
-              src={news[currentIndex] && news[currentIndex].img}></img>
-          </div>
-        </div>
-      </section>
-    );
-  } else {
-    return (
-      <section className={styles.news}>
-        <div className={`${styles.news__element} ${styles['news__element-hidden']}`}>
-          <NavigateButton degree={45} onClick={toggleHideClickHandle} />
-          <div className={styles.news__information}>
-            <span className={styles.news__date}>{`Today • ${createDate()}`}</span>
-            <h1 className={styles.news__title}>{news[currentIndex]?.title}</h1>
-            <p className={styles.news__description}>
-              {news[currentIndex] && news[currentIndex].description}
-            </p>
-            <div className={styles.news__control}>
-              <div className={styles['news__hide-container']}>
-                <a>{buttonHideText}</a>
-                <span style={{ color: '#F3F3F3' }}>|</span>
-                <a>Read more</a>
+        ) : (
+          <>
+            <div className={styles.news__information}>
+              <span className={styles.news__date}>{`Today • ${createDate()}`}</span>
+              <h1 className={styles.news__title}>{news[currentIndex]?.title}</h1>
+              <p className={styles.news__description}>
+                {news[currentIndex] && news[currentIndex].description}
+              </p>
+              <div className={styles.news__control}>
+                <div className={styles['news__hide-container']}>
+                  <NavigateButton degree={-45} onClick={toggleHideClickHandle} />
+                  <a onClick={toggleHideClickHandle} style={{ cursor: 'pointer' }}>
+                    Hide
+                  </a>
+                  <span style={{ color: '#F3F3F3' }}>&#10072;</span>
+                  <a>Read more</a>
+                </div>
+                <div className={styles['news__turn-page-button-container']}>
+                  <span>{`${currentIndex + 1}/${news.length}`}</span>
+                  {currentIndex > 0 ? (
+                    <>
+                      <NavigateButton onClick={previousPageButtonClickHandle} degree={-180} />
+                    </>
+                  ) : (
+                    ''
+                  )}
+                  {currentIndex < news.length - 1 ? (
+                    <NavigateButton onClick={nextPageButtonClickHandle} />
+                  ) : (
+                    ''
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
+            <div className={styles['news__image-container']}>
+              <img
+                className={styles.news__image}
+                src={news[currentIndex] && news[currentIndex].img}></img>
+            </div>
+          </>
+        )}
+      </div>
+    </section>
+  );
 };
