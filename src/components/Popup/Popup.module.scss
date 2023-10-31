@@ -1,0 +1,40 @@
+@use '../../styles/colorVariables.scss';
+@use '../../styles/elementVariables.scss';
+.popup {
+  display: flex;
+  visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: colorVariables.$popupBackground;
+
+  &__container {
+    padding: 26px;
+    width: 50%;
+    max-height: 50%;
+    margin: auto;
+    overflow-y: scroll;
+    background-color: colorVariables.$mainBackgroundColor;
+    border-radius: elementVariables.$elementBorderRadius;
+  }
+
+  &__title {
+    text-wrap: balance;
+  }
+
+  &__close {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url('../../assets/images/popup_close_button.svg');
+    @include elementVariables.closeButton;
+    margin-left: auto;
+  }
+}
+
+.popup_open {
+  visibility: visible;
+}

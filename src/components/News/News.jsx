@@ -3,15 +3,14 @@ import styles from './News.module.scss';
 import millionWalletsImg from '../../assets/images/million_wallets.png';
 import { NavigateButton } from '../NavigateButton/NavigateButton';
 import { newsData } from '../../assets/newsData/newsData';
+import { createPortal } from 'react-dom';
+import { Popup } from '../Popup/Popup';
 
 export const News = () => {
   const [news, setNews] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const createDate = () => {
-    return `${new Date().getHours()}: ${new Date().getMinutes()}`;
-  };
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   function toggleHideClickHandle() {
     setIsCollapsed((prev) => !prev);
@@ -59,11 +58,9 @@ export const News = () => {
         ) : (
           <>
             <div className={styles.news__information}>
-              <span className={styles.news__date}>{`Today • ${createDate()}`}</span>
+              <span className={styles.news__date}>{`Today • ${news[currentIndex]?.date}`}</span>
               <h1 className={styles.news__title}>{news[currentIndex]?.title}</h1>
-              <p className={styles.news__description}>
-                {news[currentIndex] && news[currentIndex].description}
-              </p>
+              <p className={styles.news__description}>{news[currentIndex]?.description}</p>
               <div className={styles.news__control}>
                 <div className={styles['news__hide-container']}>
                   <NavigateButton degree={-45} onClick={toggleHideClickHandle} />
@@ -71,7 +68,13 @@ export const News = () => {
                     Hide
                   </a>
                   <span style={{ color: '#F3F3F3' }}>&#10072;</span>
-                  <a>Read more</a>
+                  <a
+                    onClick={() => {
+                      setIsPopupOpen(true);
+                    }}
+                    style={{ cursor: 'pointer' }}>
+                    Read more
+                  </a>
                 </div>
                 <div className={styles['news__turn-page-button-container']}>
                   <span>{`${currentIndex + 1}/${news.length}`}</span>
@@ -91,13 +94,20 @@ export const News = () => {
               </div>
             </div>
             <div className={styles['news__image-container']}>
-              <img
-                className={styles.news__image}
-                src={news[currentIndex] && news[currentIndex].img}></img>
+              <img className={styles.news__image} src={news[currentIndex]?.img}></img>
             </div>
           </>
         )}
       </div>
+      {isPopupOpen &&
+        createPortal(
+          <Popup
+            isOpen={isPopupOpen}
+            setIsPopupOpen={setIsPopupOpen}
+            currentNews={news[currentIndex]}
+          />,
+          document.body,
+        )}
     </section>
   );
 };
