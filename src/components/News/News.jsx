@@ -33,6 +33,9 @@ export const News = () => {
     setNews(newsData.data);
     // isCollapsed ? setButtonHideText('Show') : setButtonHideText('Hide');
   }, [isCollapsed]);
+
+//улучшить код. сделать развертывание блока с помощью классов (без дублирования кода)
+
   return (
     <section className={`${styles.news} ${isCollapsed ? styles.news_collapse : ''}`}>
       <div

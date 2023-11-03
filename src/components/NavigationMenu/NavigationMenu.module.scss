@@ -1,0 +1,41 @@
+@use '../../styles/colorVariables.scss';
+@use '../../styles/elementVariables.scss';
+
+.navigation {
+  height: 70px;
+  display: flex;
+
+  border-radius: elementVariables.$elementBorderRadius;
+  background-color: colorVariables.$mainBackgroundColor;
+  margin-bottom: elementVariables.$sectionMarginBottom;
+  padding-block: 15px;
+
+  & > * {
+    margin-inline: 20px;
+  }
+
+  &__container {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    overflow: hidden;
+    justify-content: space-evenly;
+  }
+
+  &__element {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    &:hover {
+      background-color: colorVariables.$additionalBackgroundColor;
+      border-radius: elementVariables.$elementBorderRadius;
+    }
+  }
+
+  &__image {
+    width: 40px;
+    height: 100%;
+
+    border-radius: 50%;
+  }
+}

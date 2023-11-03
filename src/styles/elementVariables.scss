@@ -1,4 +1,6 @@
+@use './colorVariables.scss';
 $elementBorderRadius: 10px;
+$sectionMarginBottom: 30px;
 
 @mixin closeButton {
   background-color: transparent;
@@ -6,5 +8,10 @@ $elementBorderRadius: 10px;
   background-position: center;
   background-size: contain;
   border: none;
+  cursor: pointer;
+}
+
+@mixin linkText {
+  color: colorVariables.$link;
   cursor: pointer;
 }

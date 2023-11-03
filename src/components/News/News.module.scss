@@ -2,6 +2,7 @@
 @use '../../styles/elementVariables.scss';
 
 .news {
+  margin-bottom: elementVariables.$sectionMarginBottom;
   background-color: colorVariables.$mainBackgroundColor;
   border-radius: elementVariables.$elementBorderRadius;
   overflow: hidden;
