@@ -2,6 +2,7 @@
 @import url('./normalize.css');
 
 :root {
+  scroll-padding-top: 100px;
   font-family: 'Inter', sans-serif;
 
   background-color: #eaebf6;
@@ -20,6 +21,7 @@ body {
 }
 
 * {
+  scroll-behavior: smooth;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

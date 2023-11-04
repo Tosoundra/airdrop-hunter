@@ -6,9 +6,10 @@
   flex-direction: row;
   justify-content: space-between;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   gap: calc((100% - (416px * 3)) / 2);
-  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  
+
   &::-webkit-scrollbar {
     width: 0;
   }

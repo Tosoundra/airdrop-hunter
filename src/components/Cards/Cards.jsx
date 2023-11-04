@@ -3,15 +3,13 @@ import { cardData } from '../../assets/CardData/cardData';
 import styles from './Cards.module.scss';
 
 let cost = 150;
-export const Cards = ({}) => {
-
-
+export const Cards = ({ id }) => {
   return (
     <section>
       <ul className={styles.cards}>
         {cardData.map((item, index) => {
           return (
-            <li className={styles.card} key={index}>
+            <li className={styles.card} key={index} id={id[index]} >
               <div className={styles['card__title-container']}>
                 <img src={item.img} alt="logo" className={styles.card__logo} />
                 <span className={styles.card__title}>{item.title}</span>
