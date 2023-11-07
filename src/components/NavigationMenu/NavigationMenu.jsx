@@ -5,22 +5,19 @@ import { useEffect, useState } from 'react';
 
 export const NavigationMenu = ({ id }) => {
   const [cryptoWalletArray, setCryptoWalletArray] = useState(imageData);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   function nextPageButtonClickHandle() {
     const copiedArray = [...cryptoWalletArray];
     const firstItem = copiedArray.shift();
-    // console.log(firstItem.closest('a'));
     const updatedArray = [...copiedArray, firstItem];
     setCryptoWalletArray(updatedArray);
   }
 
-  function previousPageButtonClickHandle(e) {
+  function previousPageButtonClickHandle() {
     const copiedArray = [...cryptoWalletArray];
     const lastItem = copiedArray.pop();
     const updatedArray = [lastItem, ...copiedArray];
     setCryptoWalletArray(updatedArray);
-    console.log(e.target);
   }
   useEffect(() => {
     setCryptoWalletArray(
@@ -37,13 +34,13 @@ export const NavigationMenu = ({ id }) => {
         {cryptoWalletArray.map((item, index) => {
           return (
             <li key={index} className={styles.navigation__element}>
-              <a
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  const item = e.target.closest('a');
-                  console.log(e.target.closest('a'));
-                }}>
-                <img src={item.img} alt="crypto wallet" className={styles.navigation__image} />
+              <a href={`#${item.id}`}>
+                <img
+                  src={item.img}
+                  alt="crypto wallet"
+                  className={styles.navigation__image}
+                  loading="lazy"
+                />
               </a>
             </li>
           );

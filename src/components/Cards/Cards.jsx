@@ -1,4 +1,3 @@
-import { useId } from 'react';
 import { cardData } from '../../assets/CardData/cardData';
 import styles from './Cards.module.scss';
 
@@ -9,9 +8,9 @@ export const Cards = ({ id }) => {
       <ul className={styles.cards}>
         {cardData.map((item, index) => {
           return (
-            <li className={styles.card} key={index} id={id[index]} >
+            <li className={styles.card} key={index} id={id[index]}>
               <div className={styles['card__title-container']}>
-                <img src={item.img} alt="logo" className={styles.card__logo} />
+                <img src={item.img} alt="logo" className={styles.card__logo} loading="lazy" />
                 <span className={styles.card__title}>{item.title}</span>
               </div>
               <p className={styles.card__description}>{item.description}</p>
@@ -24,9 +23,9 @@ export const Cards = ({ id }) => {
                 <span>{item.income.probability}</span>
               </div>
               <div className={styles.tariff}>
-                <div>
-                  <span>Tariff</span>
-                  <span style={{ gridColumn: '2 / span 2' }}>Cost, $</span>
+                <div style={{ color: '#636775' }}>
+                  <span style={{ fontSize: '11px', marginRight: '140px' }}>Tariff</span>
+                  <span style={{ gridColumn: '2 / span 2', fontSize: '12px' }}>Cost, $</span>
                 </div>
                 <div className={styles.tariff__information}>
                   <span className={styles.tariff__account}>5 accounts</span>
@@ -60,7 +59,9 @@ export const Cards = ({ id }) => {
                 </div>
               </div>
               <button className={styles.card__button}>Buy</button>
-              <p>Choose a suitable tariff and click the button</p>
+              <p style={{ fontSize: '12px', textAlign: 'center' }}>
+                Choose a suitable tariff and click the button
+              </p>
             </li>
           );
         })}

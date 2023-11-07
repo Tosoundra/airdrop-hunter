@@ -1,5 +1,7 @@
 @use '../../styles/colorVariables.scss';
 @use '../../styles/elementVariables.scss';
+@use '../../styles/fontVariables.scss';
+
 .header {
   margin-bottom: 50px;
   &__warn {
@@ -22,12 +24,45 @@
 
   &__container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin: 35px 20px 50px;
   }
 
-  &__logo {
+  &__button {
+    background-color: colorVariables.$additionalBackgroundColor;
+    color: colorVariables.$mainBackgroundColor;
+    padding: 11px;
+    border-radius: elementVariables.$elementBorderRadius;
+    border: none;
+    margin-right: 15px;
+    font-size: fontVariables.$standardFontSize;
+    font-weight: fontVariables.$standardFontWeight;
     cursor: pointer;
+  }
+
+  &__logo {
+    margin-right: auto;
+    cursor: pointer;
+  }
+
+  &__options {
+    width: 40px;
+    // height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    background-color: colorVariables.$mainBackgroundColor;
+    border-radius: elementVariables.$elementBorderRadius;
+    border: none;
+    cursor: pointer;
+
+    &-button {
+      width: 18px;
+      height: 4px;
+      background: url('../../assets/images/options_button.svg');
+    }
   }
 
   .header__navigation-container {
@@ -44,5 +79,22 @@
 
   .header__button {
     background-color: colorVariables.$additionalBackgroundColor;
+  }
+
+  @media (max-width: 767px) {
+    & {
+      margin-bottom: 8px;
+    }
+
+    &__container {
+      row-gap: 25px;
+      margin: 25px 0 15px;
+    }
+    &__button {
+      margin-right: 5px;
+    }
+    &__options {
+      margin-left: unset;
+    }
   }
 }

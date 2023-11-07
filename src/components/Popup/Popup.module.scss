@@ -34,6 +34,25 @@
     @include elementVariables.closeButton;
     margin-left: auto;
   }
+
+  @media (max-width: 767px) {
+    &__container {
+      transform: translateY(50%);
+      padding: 26px;
+      width: 100%;
+      margin-inline: 12px;
+      max-width: 1300px;
+      max-height: 545px;
+
+      overflow-y: scroll;
+      background-color: #fff;
+      border-radius: 10px;
+    }
+    .popup__container_open {
+      transform: translateY(0);
+      transition: transform 0.5s cubic-bezier(0, 0, 0.16, 1.22);
+    }
+  }
 }
 
 .popup_open {

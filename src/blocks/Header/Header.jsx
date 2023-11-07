@@ -1,22 +1,26 @@
 import styles from './Header.module.scss';
 import stylesButton from '../../components/Button/Button.module.scss';
 import logo from '../../assets/images/logo_AirDrop.svg';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Button } from '../../components/Button/Button';
 import { UserAccount } from '../../components/UserAccount/UserAccount';
+import { Menu } from '../../components/Menu/Menu';
 
-export const Header = memo(() => {
-  const [selectedButton, setSelectedButton] = useState('');
+export const Header = memo(({ isDesktop, isTablet, isMobile, str }) => {
+  const [selectedButton, setSelectedButton] = useState('Airdrops');
   const [isShownWarn, setIsShownWarn] = useState(true);
 
   function closeWarnClickHandle() {
     setIsShownWarn(false);
   }
 
-  function isSelectedButton(buttonName) {
+  const isSelectedButton = (buttonName) => {
     return selectedButton === buttonName ? stylesButton.button_active : '';
-  }
+  };
 
+  useEffect(() => {
+    isSelectedButton(selectedButton);
+  }, []);
   return (
     <header className={styles.header}>
       {isShownWarn && (
@@ -29,40 +33,46 @@ export const Header = memo(() => {
       )}
       <div className={styles.header__container}>
         <img className={styles.header__logo} src={logo} alt="airdrop logo" />
-        <UserAccount />
+        <button className={styles.header__button}>Deposit</button>
+        {isDesktop && (
+          <>
+            <UserAccount />
+            <button className={styles.header__options}>
+              <div className={styles['header__options-button']}></div>
+            </button>
+          </>
+        )}
+
+        {isMobile && (
+          <>
+            <button className={styles.header__options}>
+              <div className={styles['header__options-button']}></div>
+            </button>
+            <UserAccount />
+          </>
+        )}
       </div>
-      <nav className={styles['header__navigation-container']}>
-        <Button
-          isSelectedButton={isSelectedButton}
-          setSelectedButton={setSelectedButton}
-          name="Airdrops"
-        />
-        <Button
-          isSelectedButton={isSelectedButton}
-          setSelectedButton={setSelectedButton}
-          name="Stats"
-        />
-        <Button
-          isSelectedButton={isSelectedButton}
-          setSelectedButton={setSelectedButton}
-          name="News"
-        />
-        <Button
-          isSelectedButton={isSelectedButton}
-          setSelectedButton={setSelectedButton}
-          name="Referrals"
-        />
-        <Button
-          isSelectedButton={isSelectedButton}
-          setSelectedButton={setSelectedButton}
-          name="Nodes"
-        />
-        <Button
-          isSelectedButton={isSelectedButton}
-          setSelectedButton={setSelectedButton}
-          name="Text"
-        />
-      </nav>
+      <Menu isDesktop={isDesktop} str={str} />
+      {/* {isDesktop && (
+        <div className={styles.header__container}>
+          <img className={styles.header__logo} src={logo} alt="airdrop logo" />
+          <button className={styles.account__button}>Deposit</button>
+          <UserAccount />
+          <button className={styles.header__options}>
+            <div className={styles['header__options-button']}></div>
+          </button>
+        </div>
+      )} */}
+
+      {/* {isMobile && (
+        <div className={styles.header__container}>
+          <img className={styles.header__logo} src={logo} alt="airdrop logo" />
+          <button className={styles.header__options}>
+            <div className={styles['header__options-button']}></div>
+          </button>
+          <UserAccount />
+        </div>
+      )} */}
     </header>
   );
 });

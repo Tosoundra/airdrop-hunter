@@ -8,7 +8,6 @@
   overflow-x: auto;
   gap: calc((100% - (416px * 3)) / 2);
   scroll-snap-type: x mandatory;
-  
 
   &::-webkit-scrollbar {
     width: 0;
@@ -44,6 +43,7 @@
     margin-bottom: 50px;
     font-size: 17px;
     line-height: 24px;
+    color: #999999;
   }
 
   &__read-more {
@@ -76,15 +76,19 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  column-gap: 56px;
   padding: 11px;
   border: 1px solid colorVariables.$buttonTextColor;
   border-radius: elementVariables.$elementBorderRadius;
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 15px;
 
   &__title {
     grid-column: 1 / span 2;
     font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 10px;
   }
 }
 

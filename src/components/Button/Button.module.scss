@@ -21,4 +21,8 @@
     background-color: colorVariables.$buttonColor;
     border-radius: 8px;
   }
+
+  @media (max-width: 767px) {
+    font-size: 15px;
+  }
 }

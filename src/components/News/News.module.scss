@@ -59,6 +59,26 @@
     height: 100%;
     object-fit: cover;
   }
+
+  @media (max-width: 767px) {
+    &__element {
+      height: unset;
+      flex-direction: column;
+    }
+
+    &__information {
+      max-width: unset;
+      max-height: 400px;
+    }
+
+    &__image-container {
+      width: unset;
+    }
+
+    &__image{
+      object-fit: cover;
+    }
+  }
 }
 
 .news_collapse {
