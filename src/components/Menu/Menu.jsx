@@ -1,17 +1,15 @@
-import styles from './Menu.module.scss';
-import stylesButton from '../../components/Button/Button.module.scss';
-import { useEffect, useState } from 'react';
-import { Button } from '../Button/Button';
 import { CheckDeviceComponent } from '../CheckDeviceComponent/CheckDeviceComponent';
 import { MenuMobile } from './MenuMobile';
 import { MenuDesktop } from './MenuDesktop';
 
-export const Menu = ({ isDesktop, isMobile, str }) => {
+const title = ['Airdrops', 'Stats', 'News', 'Referrals', 'Nodes', 'Text'];
+
+export const Menu = ({ isDesktop, isMobile }) => {
   return (
     <CheckDeviceComponent
       isDesktop={isDesktop}
-      desktopComponent={<MenuDesktop />}
-      mobileComponent={<MenuMobile />}
+      desktopComponent={<MenuDesktop title={title} />}
+      mobileComponent={<MenuMobile title={title} />}
     />
   );
 };

@@ -1,0 +1,123 @@
+@use '../../../styles/colorVariables.scss';
+@use '../../../styles/elementVariables.scss';
+
+.card {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  max-width: 416px;
+  padding: 35px 26px;
+  background-color: colorVariables.$mainBackgroundColor;
+  border-radius: elementVariables.$elementBorderRadius;
+
+  &__title-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+
+  &__title {
+    font-size: 18px;
+  }
+
+  &__description {
+    margin-top: 15px;
+    margin-bottom: 50px;
+    font-size: 17px;
+    line-height: 24px;
+    color: #999999;
+  }
+
+  &__read-more {
+    font-size: 14px;
+    color: colorVariables.$link;
+    @include elementVariables.linkText;
+  }
+
+  &__button {
+    padding-inline: calc((364px / 2) - (32px / 2));
+    padding-block: calc((55px / 2) - (24px / 2));
+    border: 1px solid transparent;
+    transition: border 0.3s ease-in-out;
+    border-radius: elementVariables.$elementBorderRadius;
+    margin-bottom: 10px;
+
+    background-color: #dee3ff;
+
+    font-size: 17px;
+    line-height: 22px;
+
+    &:hover {
+      cursor: pointer;
+      border-color: colorVariables.$additionalBackgroundColor;
+    }
+  }
+
+  @media (max-width: 767px) {
+    & {
+      max-width: 456px;
+      margin: auto;
+    }
+
+    &__button {
+      padding-inline: unset;
+      width: 100%;
+    }
+  }
+}
+
+.income {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  column-gap: 56px;
+  padding: 11px;
+  border: 1px solid colorVariables.$buttonTextColor;
+  border-radius: elementVariables.$elementBorderRadius;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+
+  &__title {
+    grid-column: 1 / span 2;
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+}
+
+.tariff {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 10px;
+  margin-bottom: 35px;
+
+  &__information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-block: 7px;
+    background-color: #f8f9fc;
+    border-radius: elementVariables.$elementBorderRadius;
+  }
+  &__cost {
+    // margin: 63px;
+  }
+
+  &__account {
+    width: 85px;
+    font-size: 14px;
+  }
+
+  &__detail {
+    margin-right: 67px;
+    @include elementVariables.linkText;
+  }
+}

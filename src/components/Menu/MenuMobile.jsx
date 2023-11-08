@@ -1,48 +1,32 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '../Button/Button';
-import stylesButton from '../Button/Button.module.scss';
 import styles from './Menu.module.scss';
 import { NavigateButton } from '../NavigateButton/NavigateButton';
 
-export const MenuMobile = ({}) => {
-  const arrayOfButtons = ['Airdrops', 'Stats', 'News', 'Referrals', 'Nodes', 'Text'];
-  const countOfVisibleElements = 3;
+const countOfVisibleElements = 3;
+
+export const MenuMobile = ({ title }) => {
+  const [selectedButton, setSelectedButton] = useState('Airdrops');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleElements, setVisibleElements] = useState(
-    arrayOfButtons.slice(currentIndex, countOfVisibleElements),
+    title.slice(currentIndex, countOfVisibleElements),
   );
 
   function previousButtonClickHandle() {
     if (currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
-      const newArray = arrayOfButtons.slice(
-        currentIndex - 1,
-        currentIndex - 1 + countOfVisibleElements,
-      );
+      const newArray = title.slice(currentIndex - 1, currentIndex - 1 + countOfVisibleElements);
       setVisibleElements(newArray);
     }
   }
 
   function nextButtonClickHandle() {
-    if (currentIndex < arrayOfButtons.length - countOfVisibleElements) {
+    if (currentIndex < title.length - countOfVisibleElements) {
       setCurrentIndex((prev) => prev + 1);
-      const newArray = arrayOfButtons.slice(
-        currentIndex + 1,
-        currentIndex + 1 + countOfVisibleElements,
-      );
+      const newArray = title.slice(currentIndex + 1, currentIndex + 1 + countOfVisibleElements);
       setVisibleElements(newArray);
     }
   }
-
-  const [selectedButton, setSelectedButton] = useState('Airdrops');
-
-  const isSelectedButton = (buttonName) => {
-    return selectedButton === buttonName ? stylesButton.button_active : '';
-  };
-
-  useEffect(() => {
-    isSelectedButton(selectedButton);
-  }, []);
 
   return (
     <nav className={styles.menu}>
@@ -52,7 +36,7 @@ export const MenuMobile = ({}) => {
         return (
           <Button
             key={index}
-            isSelectedButton={isSelectedButton}
+            selectedButton={selectedButton}
             setSelectedButton={setSelectedButton}
             name={item}
           />
@@ -60,7 +44,7 @@ export const MenuMobile = ({}) => {
       })}
       <NavigateButton
         onClick={nextButtonClickHandle}
-        isDisabled={currentIndex === arrayOfButtons.length - countOfVisibleElements}
+        isDisabled={currentIndex === title.length - countOfVisibleElements}
       />
     </nav>
   );

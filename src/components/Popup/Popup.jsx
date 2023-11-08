@@ -1,33 +1,11 @@
-import { useEffect, useRef } from 'react';
 import styles from './Popup.module.scss';
+import { useClosePopup } from '../../assets/CustomHooks/useClosePopup';
 
 export const Popup = ({ isOpen, currentNews, setIsPopupOpen }) => {
-  function escapePressHandle(e) {
-    if (e.key === 'Escape') {
-      setIsPopupOpen(false);
-    }
-  }
-
-  function outsideClickHandle(e) {
-    if (e.target.hasAttribute('id')) {
-      setIsPopupOpen(false);
-    }
-  }
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.addEventListener('keydown', escapePressHandle);
-      document.body.style.overflow = 'hidden';
-    }
-    return () => {
-      document.body.removeEventListener('keydown', escapePressHandle);
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
+  const closePopupAction = useClosePopup(isOpen, setIsPopupOpen);
   return (
     <div
-      onClick={outsideClickHandle}
+      onClick={closePopupAction}
       id="popup"
       className={`${styles.popup} ${isOpen && styles.popup_open}`}>
       <div className={`${styles.popup__container} ${isOpen && styles.popup__container_open}`}>

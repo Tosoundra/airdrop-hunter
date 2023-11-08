@@ -1,4 +1,8 @@
 .main{
   max-width: 1300px;
   margin: auto;
+
+  @media (max-width:767px) {
+    margin-inline: 12px;
+  }
 }
