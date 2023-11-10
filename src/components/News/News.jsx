@@ -32,13 +32,11 @@ export const News = ({ isDesktop }) => {
 
   useEffect(() => {
     setNews(newsData.data);
-    // isCollapsed ? setButtonHideText('Show') : setButtonHideText('Hide');
   }, [isCollapsed]);
 
   return (
     <section className={`${styles.news} ${isCollapsed ? styles.news_collapse : ''}`}>
       <CheckDeviceComponent
-        isDesktop={isDesktop}
         desktopComponent={
           <NewsDesktop
             previousPageButtonClickHandle={previousPageButtonClickHandle}

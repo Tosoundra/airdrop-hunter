@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { Button } from '../Button/Button';
 import styles from './Menu.module.scss';
 import { NavigateButton } from '../NavigateButton/NavigateButton';
+import { useScroll } from '../../assets/CustomHooks/useScroll';
 
 const countOfVisibleElements = 3;
 
 export const MenuMobile = ({ title }) => {
+  // const scroll = useScroll(177.5);
   const [selectedButton, setSelectedButton] = useState('Airdrops');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleElements, setVisibleElements] = useState(
@@ -29,9 +31,8 @@ export const MenuMobile = ({ title }) => {
   }
 
   return (
-    <nav className={styles.menu}>
+    <nav className={`${styles.menu}`}>
       <NavigateButton degree={-180} onClick={previousButtonClickHandle} />
-
       {visibleElements.map((item, index) => {
         return (
           <Button

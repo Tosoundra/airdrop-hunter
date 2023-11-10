@@ -19,6 +19,7 @@ export const NavigationMenu = ({ id }) => {
     const updatedArray = [lastItem, ...copiedArray];
     setCryptoWalletArray(updatedArray);
   }
+  
   useEffect(() => {
     setCryptoWalletArray(
       cryptoWalletArray.map((item, index) => {
@@ -28,7 +29,7 @@ export const NavigationMenu = ({ id }) => {
   }, []);
 
   return (
-    <nav className={styles.navigation}>
+    <nav className={`${styles.navigation} `}>
       <NavigateButton degree={180} onClick={previousPageButtonClickHandle} />
       <ul className={styles.navigation__container}>
         {cryptoWalletArray.map((item, index) => {

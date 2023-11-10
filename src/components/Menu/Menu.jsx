@@ -4,10 +4,9 @@ import { MenuDesktop } from './MenuDesktop';
 
 const title = ['Airdrops', 'Stats', 'News', 'Referrals', 'Nodes', 'Text'];
 
-export const Menu = ({ isDesktop, isMobile }) => {
+export const Menu = ({}) => {
   return (
     <CheckDeviceComponent
-      isDesktop={isDesktop}
       desktopComponent={<MenuDesktop title={title} />}
       mobileComponent={<MenuMobile title={title} />}
     />

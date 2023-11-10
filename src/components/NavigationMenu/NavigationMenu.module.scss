@@ -38,4 +38,15 @@
 
     border-radius: 50%;
   }
+
+  @media (max-width: 960px) {
+    position: sticky;
+    top: 63px;
+    max-width: 696px;
+    margin-bottom: unset;
+
+    & > * {
+      margin-inline: 3px;
+    }
+  }
 }

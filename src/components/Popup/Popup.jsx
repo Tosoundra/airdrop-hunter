@@ -14,7 +14,6 @@ export const Popup = ({ isOpen, currentNews, setIsPopupOpen }) => {
             setIsPopupOpen(false);
           }}
           className={styles.popup__close}></button>
-
         <span className={styles.news__date}>{`Today • ${currentNews?.date}`}</span>
         <h1 className={styles.popup__title}>{currentNews?.title}</h1>
         <p className={styles.news__description}>{currentNews?.description}</p>
